@@ -1,2 +1,3 @@
 # Subir imagenes y redimencionarlas con php y javascript
 A tener en cuenta: --> en php.ini de apache descomentar la linea "extension=gd",guardar los cambios y reiniciar apache.
+# Crear la carpeta imagenes un ves descargados los archivos.
