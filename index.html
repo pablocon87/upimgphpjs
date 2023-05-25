@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir imagenes</title>
+</head>
+<body>
+    <div id="load"></div>
+    <input id="imagenes" type="file" multiple accept=".jpeg,.jpg,.png,.gif" />
+    <input  type="button" onclick="UpLoad()" value="Subir" />
+<script type="text/javascript">
+function UpLoad(){
+
+    let fl = document.getElementById("imagenes").files;
+    formData = new FormData();
+    for(let x = 0 ; x < fl.length;x++){
+        Extenciones =[ 'jpg','jpeg','png','gif'];
+        archivo=fl[x].name;
+        extension = archivo.split(".").pop().toLowerCase();
+        if(!Extenciones.includes(extension)){
+            alert("extencion de archivo no permitido");
+            return;
+        }
+        formData.append("imagenes[]",fl[x]);
+
+    }
+    fetch('./upload.php',{
+        method:'POST',
+        body:formData,
+
+    }).then((response)=>{
+        return response.text();
+    }).then((res)=>{
+
+        document.getElementById("load").innerHTML=res;
+    })
+}
+</script>
+</body>
+</html>
